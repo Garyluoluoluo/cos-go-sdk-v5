@@ -1,4 +1,4 @@
-module github.com/garyluoluoluo/cos-go-sdk-v5
+module github.com/Garyluoluoluo/cos-go-sdk-v5
 
 go 1.12
 
