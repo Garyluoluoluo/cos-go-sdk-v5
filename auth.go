@@ -125,7 +125,6 @@ func newAuthorization(secretID, secretKey string, req *http.Request, authTime *A
 	keyTime := authTime.keyString()
 	signKey := calSignKey(secretKey, keyTime)
 
-	req.Header.Set("Host", req.Host)
 	formatHeaders := *new(string)
 	signedHeaderList := *new([]string)
 	formatHeaders, signedHeaderList = genFormatHeaders(req.Header)
