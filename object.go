@@ -127,7 +127,7 @@ func (s *ObjectService) GetPresignedURL(ctx context.Context, httpMethod, name, a
 		authTime = NewAuthTime(expired)
 	}
 	authorization := newAuthorization(ak, sk, req, authTime)
-	sign := encodeURIComponent(authorization, []byte{'&', '='})
+	sign := encodeURIComponent(authorization, []byte{'&', '=',';'})
 
 	if req.URL.RawQuery == "" {
 		req.URL.RawQuery = fmt.Sprintf("%s", sign)
