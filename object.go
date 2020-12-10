@@ -107,7 +107,7 @@ func (s *ObjectService) GetToFile(ctx context.Context, name, localpath string, o
 func (s *ObjectService) GetPresignedURL(ctx context.Context, httpMethod, name, ak, sk string, expired time.Duration, opt interface{}) (*url.URL, error) {
 	sendOpt := sendOptions{
 		baseURL:   s.client.BaseURL.BucketURL,
-		uri:       "/" + encodeURIComponent(name),
+		uri:       "/" + name,
 		method:    httpMethod,
 		optQuery:  opt,
 		optHeader: opt,
@@ -127,7 +127,7 @@ func (s *ObjectService) GetPresignedURL(ctx context.Context, httpMethod, name, a
 		authTime = NewAuthTime(expired)
 	}
 	authorization := newAuthorization(ak, sk, req, authTime)
-	sign := encodeURIComponent(authorization, []byte{'&','='})
+	sign := encodeURIComponent(authorization, []byte{'&', '='})
 
 	if req.URL.RawQuery == "" {
 		req.URL.RawQuery = fmt.Sprintf("%s", sign)
